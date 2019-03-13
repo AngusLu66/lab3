@@ -1,0 +1,29 @@
+int val;
+int Vin;
+double sensorValue;
+double sensorVoltage;
+int R1;
+int R2;
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  val = analogRead(15);
+  Serial.println(val);
+  delay(500);
+  for (int i = 0; i <= 5; i++) {
+    sensorValue = 0.7 * sensorValue + 0.3 * analogRead(15);
+  }
+  sensorVoltage = sensorValue * 2.5 / 4095;
+  R1 = sensorVoltage * 1035500 / 2.5;
+  Serial.print("R1=");
+  Serial.print(R1);
+  Serial.println();
+  Serial.print("sensorVoltage=");
+  Serial.print(sensorVoltage);
+  Serial.println();
+  delay(500);
+}
